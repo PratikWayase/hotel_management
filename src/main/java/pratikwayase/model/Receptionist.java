@@ -14,11 +14,7 @@ public class Receptionist extends User {
         System.out.println("Receptionist Name: " + getName() + ", Email: " + getEmail());
     }
 
-    /**
-     * Handles checking in a guest for a specific booking.
-     * Updates the room status and booking status.
-     * @param booking The RoomBooking to check in.
-     */
+
     public void checkInGuest(RoomBooking booking) {
         if (booking != null && booking.getRoom() != null) {
             booking.getRoom().checkIn(); // Room's checkIn method handles its own lock
@@ -29,11 +25,6 @@ public class Receptionist extends User {
         }
     }
 
-    /**
-     * Handles checking out a guest for a specific booking.
-     * Updates the room status and booking status.
-     * @param booking The RoomBooking to check out.
-     */
     public void checkOutGuest(RoomBooking booking) {
         if (booking != null && booking.getRoom() != null) {
             booking.getRoom().checkOut(); // Room's checkOut method handles its own lock
