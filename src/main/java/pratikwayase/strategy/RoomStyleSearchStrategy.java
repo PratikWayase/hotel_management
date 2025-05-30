@@ -10,8 +10,6 @@ public class RoomStyleSearchStrategy implements SearchStrategy {
     public List<Room> searchRooms(List<Room> rooms, RoomStyle style, Date startDate, int duration) {
         List<Room> result = new ArrayList<>();
         for (Room room : rooms) {
-            // Check for both style and actual availability for the given dates
-            // room.isRoomAvailable() handles its own internal locking.
             if (room.getStyle() == style && room.isRoomAvailable(startDate, duration)) {
                 result.add(room);
             }
