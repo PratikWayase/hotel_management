@@ -33,7 +33,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     public static void main(String[] args) {
-        // --- Setup Hotel and Initial Data ---
+   
         Hotel grandHyatt = new Hotel("Grand Hyatt Mumbai");
 
         // Create Rooms using Factories
@@ -72,21 +72,18 @@ public class Main {
             alice.displayInfo();
             mark.displayInfo();
 
-            // --- Demonstrate Command Pattern ---
+            // ---  Command Pattern ---
             System.out.println("\n--- Demonstrating Command Pattern (Booking & Cancellation) ---");
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.DAY_OF_MONTH, 7); // Booking for 7 days from now
             Date bookingDate = cal.getTime();
 
-            // Book Room 101 for John
+            
             System.out.println("\nAttempting to book Room 101 for John...");
             Command bookRoom101ForJohn = new BookRoomCommand(grandHyatt, "RES001", "101", "G001", bookingDate, 3);
             bookRoom101ForJohn.execute();
-            System.out.println("John's bookings: " + john.getBookings());
-            // Directly accessing room's internal bookings list for verification (for demo purposes)
+            System.out.println("John's bookings: " + john.getBookings())
             System.out.println("Room 101 internal bookings: " + grandHyatt.findRoomByNumber("101").bookings);
-
-            // Try to book the same room 101 for Jane (should fail due to overlap)
             System.out.println("\nAttempting to book Room 101 again for Jane (should fail)...");
             try {
                 Command bookRoom101ForJane = new BookRoomCommand(grandHyatt, "RES002", "101", "G002", bookingDate, 2);
@@ -111,13 +108,13 @@ public class Main {
             System.out.println("Room 101 internal bookings after cancellation: " + grandHyatt.findRoomByNumber("101").bookings);
 
 
-            // --- Demonstrate Template Method Pattern ---
+            // --- Template Method Pattern ---
             System.out.println("\n--- Demonstrating Template Method Pattern (Room Services) ---");
             RoomServiceTemplate housekeeping = new HousekeepingService();
-            housekeeping.executeService(room102); // Service for room 102 (currently available)
+            housekeeping.executeService(room102); 
 
             RoomServiceTemplate foodService = new FoodService();
-            foodService.executeService(room201); // Service for room 201 (booked by Jane)
+            foodService.executeService(room201); 
 
             // --- Demonstrate Strategy Pattern for Searching Rooms ---
             System.out.println("\n--- Demonstrating Strategy Pattern (Searching Rooms) ---");
@@ -135,14 +132,14 @@ public class Main {
             // Search for all available rooms regardless of style for specific dates
             System.out.println("\nSearching for ALL available rooms for " + bookingDate.toGMTString() + " for 3 days:");
             SearchStrategy availabilitySearch = new RoomAvailabilitySearchStrategy();
-            List<Room> allAvailableRooms = grandHyatt.searchRooms(availabilitySearch, null, bookingDate, 3); // Passing null for style to search all
+            List<Room> allAvailableRooms = grandHyatt.searchRooms(availabilitySearch, null, bookingDate, 3); 
             if (allAvailableRooms.isEmpty()) {
                 System.out.println("No rooms available for these dates.");
             } else {
                 allAvailableRooms.forEach(room -> System.out.println("Found: " + room));
             }
 
-            // --- Demonstrate Receptionist Actions ---
+            // ---  Receptionist Actions ---
             System.out.println("\n--- Demonstrating Receptionist Actions ---");
             RoomBooking janeBooking = grandHyatt.findBookingByReservationNumber("RES003");
             if (janeBooking != null) {
