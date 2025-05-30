@@ -8,7 +8,7 @@ import java.util.List;
 
 import java.util.*;
 
-// Using a generic type for more flexible event notifications
+
 public class SystemNotifier<T> {
     private final List<Observer<T>> observers = new ArrayList<>();
 
