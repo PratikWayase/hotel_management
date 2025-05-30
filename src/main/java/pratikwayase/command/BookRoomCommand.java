@@ -21,7 +21,7 @@ public class BookRoomCommand implements Command {
     private final String guestId;
     private final Date startDate;
     private final int durationInDays;
-    private RoomBooking createdBooking; // To hold the created booking after execution
+    private RoomBooking createdBooking; 
 
     public BookRoomCommand(Hotel hotel, String reservationNumber, String roomNumber, String guestId, Date startDate, int durationInDays) {
         this.hotel = hotel;
@@ -35,7 +35,6 @@ public class BookRoomCommand implements Command {
     @Override
     public void execute() throws RoomNotAvailableException, InvalidBookingException {
         System.out.println("Attempting to book room for reservation: " + reservationNumber);
-        // The hotel.createBooking method handles the concurrency logic internally
         createdBooking = hotel.createBooking(reservationNumber, roomNumber, guestId, startDate, durationInDays);
         hotel.confirmBooking(createdBooking); // Confirm the booking automatically after creation
         System.out.println("Booking for reservation " + reservationNumber + " confirmed.");
