@@ -5,7 +5,6 @@ package pratikwayase.model;
 import pratikwayase.enums.AccountStatus;
 import pratikwayase.enums.AccountType;
 
-// Introduced a base User class to unify Guest, Receptionist, etc.
 public abstract class User {
     private final String id;
     private final String name;
@@ -19,7 +18,7 @@ public abstract class User {
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.accountStatus = AccountStatus.ACTIVE; // Default status
+        this.accountStatus = AccountStatus.ACTIVE; 
         this.accountType = accountType;
     }
 
@@ -34,6 +33,5 @@ public abstract class User {
         this.accountStatus = accountStatus;
     }
 
-    // Abstract method to be implemented by subclasses for specific display logic
     public abstract void displayInfo();
 }
