@@ -26,7 +26,7 @@ public class CancelBookingCommand implements Command {
         if (booking == null) {
             throw new InvalidBookingException("Booking with reservation number " + reservationNumber + " not found.");
         }
-        hotel.cancelBooking(booking); // Hotel handles the cancellation logic and updates
+        hotel.cancelBooking(booking); 
         System.out.println("Booking " + reservationNumber + " cancelled successfully.");
     }
 }
