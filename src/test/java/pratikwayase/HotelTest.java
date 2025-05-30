@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("Hotel Management System Tests")
+@DisplayName("Hotel Management")
 class HotelTest {
 
     // Constants for test data
@@ -60,10 +60,10 @@ class HotelTest {
 
     @AfterEach
     void tearDown() {
-        hotel = null; // Clean up to avoid state leakage
+        hotel = null; 
     }
 
-    // --- Helper Methods ---
+
     private RoomBooking createConfirmedBooking(String reservationNumber, String roomNumber, String guestId, Date date, int days)
             throws InvalidBookingException, RoomNotAvailableException {
         BookRoomCommand cmd = new BookRoomCommand(hotel, reservationNumber, roomNumber, guestId, date, days);
@@ -155,7 +155,7 @@ class HotelTest {
         assertEquals(RoomStatus.AVAILABLE, deluxeRoom.getStatus());
     }
 
-    @RepeatedTest(3) // Run multiple times to catch flakiness
+    @RepeatedTest(3) 
     @DisplayName("7. Concurrency: Only one booking succeeds per room")
     void testConcurrentBookings() throws Exception {
         Room concurrentRoom = roomFactory.createRoom(RoomStyle.BUSINESS_SUITE, "CON_001", 250.0, false);
@@ -190,7 +190,7 @@ class HotelTest {
         assertEquals(1, findBookingsForRoom(concurrentRoom).size());
     }
 
-    // --- Custom Assertions ---
+
     private void assertBookingDetails(RoomBooking booking, String expectedRoomNumber,
                                       String expectedGuestId, BookingStatus expectedStatus) {
         assertNotNull(booking);
